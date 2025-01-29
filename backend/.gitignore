@@ -1,0 +1,6 @@
+.env
+config.py
+venv/
+core/
+__pycache__/
+notes.txt
