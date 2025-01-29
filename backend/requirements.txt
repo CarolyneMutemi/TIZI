@@ -1,0 +1,11 @@
+aioredis==2.0.1
+fastapi==0.115.7
+motor==3.6.1
+pydantic==2.10.6
+PyJWT==2.10.1
+PyJWT==2.10.1
+pymongo==10.10.10.10
+python-dotenv==1.0.1
+python_jose==3.3.0
+redisbloom==0.4.1
+yagmail==0.15.293

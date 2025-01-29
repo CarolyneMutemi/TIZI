@@ -1,9 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.endpoints.auth import auth_router
 from app.api.endpoints.email_auth import email_auth_router
 from app.api.endpoints.events import events_router
 from app.api.endpoints.user import user_router
+from app.services.events_services import get_ussd_steps
 from app.utils.user_utils import create_bloom_filter
 from app.db.redis_client import test_redis_connection, redis_client
 from app.db.mongo_client import test_mongo_connection, mongo_client
@@ -35,6 +36,11 @@ async def startup_event():
         await test_mongo_connection(mongo_client)
     except Exception as e:
         print(f"Error occurred: {e}")
+
+@app.route('/ussd', methods=['POST', 'GET'])
+def ussd_callback(request: Request):
+    response = get_ussd_steps(request)
+    return response
 
 @app.get("/home")
 async def home():
